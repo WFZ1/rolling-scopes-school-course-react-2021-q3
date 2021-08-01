@@ -1,0 +1,1 @@
+Completed tasks of the course React from the Rolling Scopes community (https://rs.school/js/)
