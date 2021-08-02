@@ -1,0 +1,55 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "airbnb-typescript/base",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaFeatures": { "jsx": true }
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "jsx-a11y"
+  ],
+  "rules": {
+    "no-plusplus": "off",
+    "indent": ["warn", 2, {
+      "SwitchCase": 1
+    }],
+    "@typescript-eslint/indent": ["warn", 2, {
+      "SwitchCase": 1
+    }],
+    "import/prefer-default-export": "off",
+    "no-param-reassign": ["error", {
+      "props": false
+    }],
+    "class-methods-use-this": ["error", {
+      "exceptMethods": [
+        "render",
+        "getInitialState",
+        "getDefaultProps",
+        "getChildContext",
+        "componentWillMount",
+        "componentDidMount",
+        "componentWillReceiveProps",
+        "shouldComponentUpdate",
+        "componentWillUpdate",
+        "componentDidUpdate",
+        "componentWillUnmount",
+      ]
+    }]
+  }
+}
