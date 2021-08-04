@@ -11,7 +11,7 @@ export default class HomePage extends React.Component {
     return (
       <main className="home-page__main main">
         <SearchBar classes="home-page__search-bar" />
-        <ProductCardsField productsProps={ PRODUCTS } />
+        <ProductCardsField productsProps={PRODUCTS} />
       </main>
     );
   }

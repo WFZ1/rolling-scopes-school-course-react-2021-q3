@@ -33,7 +33,7 @@
   cursor: pointer;
   border-radius: 0 5px 5px 0;
   background-color: #686868;
-  transition: width .3s;
+  transition: width 0.3s;
 
   .search-bar__field:not(:placeholder-shown) + & {
     width: 45px;

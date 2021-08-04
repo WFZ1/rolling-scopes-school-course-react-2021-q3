@@ -10,4 +10,4 @@ export default interface IProductCardProps {
     selected?: boolean;
   }[];
   brand?: string;
-};
+}
