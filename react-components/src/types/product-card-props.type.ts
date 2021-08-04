@@ -9,5 +9,5 @@ export default interface IProductCardProps {
     hex: string;
     selected?: boolean;
   }[];
-  brand: string;
+  brand?: string;
 };
