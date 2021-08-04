@@ -1,6 +1,7 @@
 .search-bar {
   display: flex;
   max-width: 300px;
+  overflow: hidden;
   background-color: #686868;
   border-radius: 5px;
 }

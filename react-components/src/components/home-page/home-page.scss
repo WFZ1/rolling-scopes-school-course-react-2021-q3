@@ -1,3 +1,19 @@
+@import '../../breakpoints.scss';
+
 .home-page__main {
-  margin-bottom: 30px;
+  margin: 20px 0 0;
+  padding-bottom: 30px;
+
+  @include at($min, $phone + 1) {
+    margin: 30px 0 0;
+    padding-bottom: 50px;
+  }
+}
+
+.home-page__search-bar {
+  margin: 0 auto 30px;
+
+  @include at($min, $phone + 1) {
+    margin-bottom: 40px;
+  }
 }
