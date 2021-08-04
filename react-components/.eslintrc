@@ -51,5 +51,10 @@
         "componentWillUnmount",
       ]
     }]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
