@@ -1,7 +1,7 @@
 import './product-cards-field.scss';
 import React from 'react';
-import IProductCardProps from '../../types/product-card-props.type';
 import ProductCard from '../product-card/product-card';
+import IProductCardProps from '../../types/product-card-props.type';
 
 export default class ProductCardsField extends React.Component<{ productsProps: IProductCardProps[] }> {
 
