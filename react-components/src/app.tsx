@@ -1,10 +1,10 @@
 import React from 'react';
-import SearchBar from './components/search-bar/search-bar';
+import HomePage from './components/home-page/home-page';
 
 export default class App extends React.Component {
   render(): JSX.Element {
     return (
-      <SearchBar />
+      <HomePage />
     );
   }
 }
