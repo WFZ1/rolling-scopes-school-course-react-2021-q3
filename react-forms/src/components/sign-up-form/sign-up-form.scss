@@ -40,8 +40,9 @@
 .sign-up-form__col-half {
   @include at($min, $phone + 1) {
     display: inline-block;
-    padding-right: 10px;
     width: 50%;
+    padding-right: 10px;
+    vertical-align: top;
 
     &:last-child {
       padding-right: 0;
@@ -85,6 +86,18 @@
   }
 }
 
+// Input error
+
+.sign-up-form__input-error {
+  display: none;
+  color: #ef6969;
+  margin: 0.5em 0 1.5em;
+}
+
+.sign-up-form__input__invalid .sign-up-form__input-error {
+  display: block;
+}
+
 // Input icon
 
 .sign-up-form__input-icon {
@@ -93,7 +106,7 @@
   left: 0;
   display: flex;
   width: 3.4em;
-  height: 100%;
+  height: 3.534em;
   align-items: center;
   justify-content: center;
 
@@ -174,9 +187,10 @@
 .sign-up-form__select {
   display: inline-block;
   width: 50%;
-  height: 3.975em;
+  height: 3.786em;
   outline: 0;
   color: #b9b9b9;
+  font-size: 14px;
   cursor: pointer;
 }
 
@@ -249,6 +263,7 @@
 .sign-up-form__switcher-container {
   @include at ($min, $phone-xl + 1) {
     display: flex;
+    flex-wrap: wrap;
   }
 }
 
@@ -359,8 +374,34 @@
 
 .sign-up-form__switcher-text {
   margin: 0;
+  flex: 1;
 
   @include at ($min, $phone-xl + 1) {
     margin-left: 0.5em;
+  }
+}
+
+.sign-up-form__switcher-container .sign-up-form__input-error {
+  width: 100%;
+}
+
+// Btn submit
+
+.sign-up-form__btn-submit {
+  min-width: 10em;
+  margin-top: 1.5em;
+  padding: 0.8em 2em;
+  line-height: 1;
+  font-size: 18px;
+  text-transform: uppercase;
+  background-color: #7ed321;
+  color: #fff;
+  border: 1px solid #64ac15;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.5s;
+
+  &:hover {
+    background-color: #64ac15;
   }
 }
