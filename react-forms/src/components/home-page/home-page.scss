@@ -1,0 +1,19 @@
+@import '../../breakpoints.scss';
+
+.home-page__main {
+  padding-top: 20px;
+  padding-bottom: 30px;
+
+  @include at($min, $phone + 1) {
+    padding-top: 30px;
+    padding-bottom: 50px;
+  }
+}
+
+.home-page__sign-up-form {
+  margin: 0 auto 30px;
+
+  @include at($min, $phone + 1) {
+    margin-bottom: 50px;
+  }
+}

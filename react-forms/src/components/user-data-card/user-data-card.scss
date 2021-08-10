@@ -1,0 +1,29 @@
+.user-data-card {
+  padding: 25px;
+  background-color: #fff;
+  box-shadow: 0 0 10px 3px #ccc;
+  border-radius: 4px;
+}
+
+.user-data-card__section {
+  display: flex;
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.user-data-card__section-title {
+  width: 50%;
+  margin: 0 8px 0 0;
+  color: #acc393;
+  word-break: break-all;
+}
+
+.user-data-card__section-value {
+  width: 50%;
+  font-weight: 500;
+  color: #b9b9b9;
+  word-break: break-all;
+}

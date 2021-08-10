@@ -1,0 +1,12 @@
+@import '../../breakpoints.scss';
+
+.users-data-cards-field {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 445px));
+  gap: 20px;
+  justify-content: center;
+
+  @include at($min, $tablet + 1) {
+    gap: 30px;
+  }
+}

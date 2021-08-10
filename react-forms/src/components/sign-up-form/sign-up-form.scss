@@ -1,0 +1,426 @@
+@import '../../breakpoints.scss';
+
+.sign-up-form {
+  max-width: 38em;
+  padding: 0.5em 1.5em 1em 1.5em;
+  font-size: 15px;
+  background-color: #fff;
+  color: #b9b9b9;
+  border-radius: 4px;
+  box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+
+  @include at($min, $phone + 1) {
+    padding: 1em 3em 2em 3em;
+  }
+}
+
+.sign-up-form__terms {
+  margin: 0 0 2.3em;
+}
+
+.sign-up-form__subtitle {
+  margin: 1.3em 0;
+  color: #7ed321;
+}
+
+// Input group
+
+.sign-up-form__input-group {
+  margin-bottom: 1em;
+}
+
+.sign-up-form__input-group-icon {
+  position: relative;
+
+  .sign-up-form__input {
+    padding-left: 4.4em;
+  }
+}
+
+.sign-up-form__col-half {
+  @include at($min, $phone + 1) {
+    display: inline-block;
+    width: 50%;
+    padding-right: 10px;
+    vertical-align: top;
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+}
+
+// Input
+
+.sign-up-form__input,
+.sign-up-form__input-radio + .sign-up-form__label,
+.sign-up-form__input-checkbox + .sign-up-form__label::before,
+.sign-up-form__select {
+  width: 100%;
+  padding: 1em;
+  line-height: 1.4;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  transition-property: background-color, color, border-color;
+  transition-duration: 0.35s;
+  transition-timing-function: ease-in-out;
+}
+
+.sign-up-form__input {
+  font-size: 15px;
+
+  &:focus {
+    outline: 0;
+    border-color: #64ac15;
+  }
+
+  &:focus + .sign-up-form__input-icon {
+    &:after {
+      border-right-color: #7ed321;
+    }
+
+    .fa,
+    .fab {
+      color: #7ed321;
+    }
+  }
+}
+
+// Input error
+
+.sign-up-form__input-error {
+  display: none;
+  color: #ef6969;
+  margin: 0.5em 0 1.5em;
+}
+
+.sign-up-form__input__invalid .sign-up-form__input-error {
+  display: block;
+}
+
+// Input icon
+
+.sign-up-form__input-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 3.4em;
+  height: 3.534em;
+  align-items: center;
+  justify-content: center;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0.6em;
+    right: 0;
+    bottom: 0.6em;
+    border-right: 1px solid #e5e5e5;
+    transition: border-right-color 0.35s ease-in-out;
+  }
+
+  .fa,
+  .fab {
+    transition: color 0.35s ease-in-out;
+  }
+}
+
+// Input type date
+
+.sign-up-form__input-date {
+  color: #b9b9b9;
+  cursor: pointer;
+
+  &::-webkit-calendar-picker-indicator {
+    filter: invert(85%) sepia(1%) hue-rotate(356deg) brightness(91%)
+      contrast(83%);
+    cursor: pointer;
+  }
+}
+
+// Input type radio
+
+.sign-up-form__input-radio:checked + .sign-up-form__label,
+.sign-up-form__input-checkbox:checked + .sign-up-form__label:before,
+.sign-up-form__select:focus {
+  background-color: #7ed321;
+  color: #fff;
+  border-color: #64ac15;
+}
+
+.sign-up-form__input-radio {
+  display: none;
+
+  + .sign-up-form__label {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+
+    @include at($min, $phone-md) {
+      display: inline-block;
+      width: 50%;
+    }
+
+    &:first-of-type {
+      border-radius: 3px 3px 0 0;
+
+      @include at($min, $phone-md) {
+        border-radius: 3px 0 0 3px;
+      }
+    }
+
+    &:last-of-type {
+      border-radius: 0 0 3px 3px;
+
+      @include at($min, $phone-md) {
+        border-radius: 0 3px 3px 0;
+      }
+    }
+
+    .fa,
+    .fab {
+      padding-right: 0.4em;
+    }
+  }
+}
+
+// Select & Option
+
+.sign-up-form__select {
+  display: inline-block;
+  width: 50%;
+  height: 3.786em;
+  outline: 0;
+  color: #b9b9b9;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.sign-up-form__option {
+  background-color: #cfe0bc;
+  color: #000;
+}
+
+.sign-up-form__card-expire-month {
+  border-radius: 3px 3px 0 0;
+
+  @include at($min, $phone + 1) {
+    border-radius: 3px 0 0 3px;
+  }
+}
+
+.sign-up-form__card-expire-year {
+  border-radius: 0 0 3px 3px;
+
+  @include at($min, $phone + 1) {
+    border-radius: 0 3px 3px 0;
+  }
+}
+
+// Input type checkbox
+
+.sign-up-form__input-checkbox {
+  display: none;
+
+  + .sign-up-form__label {
+    position: relative;
+    display: block;
+    padding-left: 1.6em;
+    cursor: pointer;
+
+    &::before,
+    &::after {
+      position: absolute;
+      cursor: pointer;
+    }
+
+    &::before {
+      top: 0.2em;
+      left: 0;
+      width: 1em;
+      height: 1em;
+      padding: 0;
+      content: '';
+    }
+
+    &::after {
+      top: 0.45em;
+      left: 0.2em;
+      content: '\f00c';
+      font-family: 'Font Awesome 5 Free';
+      font-size: 0.8em;
+      font-weight: 900;
+      color: #fff;
+      opacity: 0;
+    }
+  }
+
+  &:checked + .sign-up-form__label::after {
+    opacity: 1;
+  }
+}
+
+// Switcher
+
+.sign-up-form__switcher-container {
+  @include at($min, $phone-xl + 1) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.sign-up-form__switcher {
+  position: relative;
+  display: block;
+  width: 80px;
+  height: 35px;
+  margin-bottom: 0.5em;
+  padding: 3px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #fff;
+  background-image: linear-gradient(180deg, #eee, #fff 25px);
+  box-shadow: inset 0 -1px #fff, inset 0 1px 1px rgb(0 0 0 / 5%);
+
+  @include at($min, $phone-xl + 1) {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+}
+
+.sign-up-form__switcher-checkbox {
+  position: absolute;
+  visibility: hidden;
+
+  &:checked + .sign-up-form__switcher-panel {
+    background-color: #7ed321;
+    box-shadow: inset 0 1px 2px rgb(0 0 0 / 15%), inset 0 0 3px rgb(0 0 0 / 20%);
+
+    &:before {
+      opacity: 1;
+    }
+
+    &:after {
+      opacity: 0;
+    }
+  }
+
+  &:checked ~ .sign-up-form__switcher-handle {
+    left: 52px;
+    box-shadow: -1px 1px 5px rgb(0 0 0 / 20%);
+  }
+}
+
+.sign-up-form__switcher-panel {
+  position: relative;
+  display: block;
+  height: 100%;
+  font-size: 15px;
+  line-height: 29px;
+  text-transform: uppercase;
+  border-radius: inherit;
+  background-color: #f9f9f9;
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 12%), inset 0 0 2px rgb(0 0 0 / 15%);
+  transition-property: background-image, box-shadow;
+  transition-duration: 0.15s;
+  transition-timing-function: ease-out;
+
+  &::before,
+  &::after {
+    position: absolute;
+    transition: opacity 0.15s;
+  }
+
+  &::before {
+    content: attr(data-on);
+    left: 10px;
+    color: #fff;
+    text-shadow: 0 1px rgb(0 0 0 / 20%);
+    opacity: 0;
+  }
+
+  &::after {
+    content: attr(data-off);
+    right: 10px;
+    color: #b9b9b9;
+    text-shadow: 0 1px hsl(0deg 0% 100% / 50%);
+  }
+}
+
+.sign-up-form__switcher-handle {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  background-color: #fff;
+  background-image: linear-gradient(180deg, #fff 40%, #f0f0f0);
+  box-shadow: 1px 1px 5px rgb(0 0 0 / 20%);
+  transition: left 0.15s ease-out;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 9px;
+    height: 9px;
+    margin: -4.5px 0 0 -4.5px;
+    border-radius: 4.5px;
+    background-color: #f9f9f9;
+    background-image: linear-gradient(180deg, #eee, #fff);
+    box-shadow: inset 0 1px rgb(0 0 0 / 2%);
+  }
+}
+
+.sign-up-form__switcher-text {
+  margin: 0;
+  flex: 1;
+
+  @include at($min, $phone-xl + 1) {
+    margin-left: 0.5em;
+  }
+}
+
+.sign-up-form__switcher-container .sign-up-form__input-error {
+  width: 100%;
+}
+
+// Btn submit
+
+.sign-up-form__btn-submit {
+  min-width: 10em;
+  margin-top: 1.5em;
+  padding: 0.8em 2em;
+  line-height: 1;
+  font-size: 18px;
+  text-transform: uppercase;
+  background-color: #7ed321;
+  color: #fff;
+  border: 1px solid #64ac15;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.5s;
+
+  &:hover {
+    background-color: #64ac15;
+  }
+}
+
+// Success message
+
+.sign-up-form__success {
+  display: none;
+  margin: 40px 0 0;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #7ed321;
+}
+
+.sign-up-form__success_visible {
+  display: block;
+}
