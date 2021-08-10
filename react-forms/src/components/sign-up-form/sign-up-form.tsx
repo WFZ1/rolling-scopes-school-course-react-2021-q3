@@ -7,8 +7,12 @@ import ISignUpFormFieldsValues from '../../types/sign-up-form-fields-values.type
 import { SIGN_UP_FORM_FIELDS_REGEX, SIGN_UP_FORM_FIELDS_VALUES } from '../../constants';
 
 export default class SignUpForm extends React.Component<ISignUpFormProps, ISignUpFormState> {
+  private successMessage: React.RefObject<HTMLParagraphElement>;
+
   constructor(props: ISignUpFormProps) {
     super(props);
+
+    this.successMessage = React.createRef();
 
     this.state = {
       fields: { ...SIGN_UP_FORM_FIELDS_VALUES },
@@ -21,6 +25,14 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
       ...prevState,
       fields: { ...SIGN_UP_FORM_FIELDS_VALUES }
     }));
+  }
+
+  private showSuccessMessage(): void {
+    this.successMessage.current?.classList.add('sign-up-form__success_visible');
+
+    setTimeout(() => {
+      this.successMessage.current?.classList.remove('sign-up-form__success_visible');
+    }, 5000);
   }
 
   private handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
@@ -47,6 +59,7 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
     else {
       this.props.saveUserData(this.state.fields);
       this.resetForm();
+      this.showSuccessMessage();
     }
   }
 
@@ -431,6 +444,8 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
         </section>
 
         <input className="sign-up-form__btn-submit" type="submit" value="Submit" />
+
+        <p className="sign-up-form__success" ref={ this.successMessage }>Data saved successfully.</p>
       </form>
     );
   }
