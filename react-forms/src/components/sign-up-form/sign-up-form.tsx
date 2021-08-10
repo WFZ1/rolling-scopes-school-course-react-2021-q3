@@ -1,12 +1,13 @@
 import './sign-up-form.scss';
 import '@fortawesome/fontawesome-free/css/all.css';
 import React from 'react';
+import ISignUpFormProps from '../../types/sign-up-form-props.type';
 import ISignUpFormState from '../../types/sign-up-form-state.type';
 import ISignUpFormFieldsValues from '../../types/sign-up-form-fields-values.type';
 import { SIGN_UP_FORM_FIELDS } from '../../constants';
 
-export default class SignUpForm extends React.Component<{ classes: string }, ISignUpFormState> {
-  constructor(props: { classes: string }) {
+export default class SignUpForm extends React.Component<ISignUpFormProps, ISignUpFormState> {
+  constructor(props: ISignUpFormProps) {
     super(props);
 
     this.state = {
@@ -38,7 +39,8 @@ export default class SignUpForm extends React.Component<{ classes: string }, ISi
       const isErrorsArr = this.checkValidation(key as keyof ISignUpFormFieldsValues);
 
       if (isErrorsArr) {
-        errors = errors.concat(isErrorsArr);
+        const allErrors = [...errors, ...isErrorsArr];
+        errors = [...new Set(allErrors)];
       }
     });
 
@@ -47,6 +49,9 @@ export default class SignUpForm extends React.Component<{ classes: string }, ISi
         ...prevState,
         errors
       }));
+    }
+    else {
+      this.props.saveUserData(this.state.fields);
     }
   }
 
@@ -98,7 +103,7 @@ export default class SignUpForm extends React.Component<{ classes: string }, ISi
     });
   }
 
-  componentDidUpdate(prevProps: { classes: string }, prevState: ISignUpFormState): void {
+  componentDidUpdate(prevProps: ISignUpFormProps, prevState: ISignUpFormState): void {
     this.defineChangedField(prevState);
   }
 
@@ -132,7 +137,7 @@ export default class SignUpForm extends React.Component<{ classes: string }, ISi
               type="email"
               value={ this.state.fields.email }
               name="email"
-              placeholder="Email Adress"
+              placeholder="Email Address"
               required
               onChange={ (e) => this.handleChange(e) }
             />

@@ -9,3 +9,11 @@
     padding-bottom: 50px;
   }
 }
+
+.home-page__sign-up-form {
+  margin: 0 auto 30px;
+
+  @include at($min, $phone + 1) {
+    margin-bottom: 50px;
+  }
+}
