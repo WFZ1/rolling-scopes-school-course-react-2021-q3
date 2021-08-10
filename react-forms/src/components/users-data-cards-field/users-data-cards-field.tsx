@@ -9,7 +9,7 @@ export default class UsersDataCardsField extends React.Component<{ classes: stri
       <div className={ `users-data-cards-field ${ this.props.classes }` }>
         {
           this.props.usersData.map((userData) =>
-            <UserDataCard key={ userData.email } classes="users-data-cards-field__card" data={ userData } />
+            <UserDataCard classes="users-data-cards-field__card" key={ userData.email } data={ userData } />
           )
         }
       </div>

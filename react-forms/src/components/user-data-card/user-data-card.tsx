@@ -8,7 +8,7 @@ export default class UserDataCard extends React.Component<{ classes: string, dat
       <div className={ `user-data-card ${ this.props.classes }` }>
         {
           Object.keys(this.props.data).map((field) => (
-            <section className="user-data-card__section" key={ this.props.data.email }>
+            <section className="user-data-card__section" key={ field }>
               <h4 className="user-data-card__section-title">{ field }:</h4>
               <span className="user-data-card__section-value">{ String(this.props.data[field as keyof ISignUpFormFieldsValues]) }</span>
             </section>

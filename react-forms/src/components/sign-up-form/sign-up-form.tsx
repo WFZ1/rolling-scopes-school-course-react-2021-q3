@@ -4,29 +4,23 @@ import React from 'react';
 import ISignUpFormProps from '../../types/sign-up-form-props.type';
 import ISignUpFormState from '../../types/sign-up-form-state.type';
 import ISignUpFormFieldsValues from '../../types/sign-up-form-fields-values.type';
-import { SIGN_UP_FORM_FIELDS } from '../../constants';
+import { SIGN_UP_FORM_FIELDS_REGEX, SIGN_UP_FORM_FIELDS_VALUES } from '../../constants';
 
 export default class SignUpForm extends React.Component<ISignUpFormProps, ISignUpFormState> {
   constructor(props: ISignUpFormProps) {
     super(props);
 
     this.state = {
-      fields: {
-        fullName: '',
-        email: '',
-        password: '',
-        dateOfBirth: '',
-        gender: '',
-        paymentMethod: 'card',
-        cardNumber: '',
-        cardCvv: '',
-        cardExpireMonth: 'pick-month',
-        cardExpireYear: 'pick-year',
-        termsAndConditions: false,
-        marketingInfo: true,
-      },
+      fields: { ...SIGN_UP_FORM_FIELDS_VALUES },
       errors: []
     };
+  }
+
+  private resetForm(): void {
+    this.setState((prevState) => ({
+      ...prevState,
+      fields: { ...SIGN_UP_FORM_FIELDS_VALUES }
+    }));
   }
 
   private handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
@@ -52,6 +46,7 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
     }
     else {
       this.props.saveUserData(this.state.fields);
+      this.resetForm();
     }
   }
 
@@ -69,7 +64,7 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
   }
 
   private checkValidation(fieldName: keyof ISignUpFormFieldsValues): string[] | false {
-    const field = SIGN_UP_FORM_FIELDS.find((fld) => fld.name === fieldName);
+    const field = SIGN_UP_FORM_FIELDS_REGEX.find((fld) => fld.name === fieldName);
 
     if (!field) return false;
 

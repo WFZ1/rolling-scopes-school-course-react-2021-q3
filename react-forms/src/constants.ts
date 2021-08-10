@@ -1,4 +1,19 @@
-export const SIGN_UP_FORM_FIELDS = [
+export const SIGN_UP_FORM_FIELDS_VALUES = {
+  fullName: '',
+  email: '',
+  password: '',
+  dateOfBirth: '',
+  gender: '',
+  paymentMethod: 'card',
+  cardNumber: '',
+  cardCvv: '',
+  cardExpireMonth: 'pick-month',
+  cardExpireYear: 'pick-year',
+  termsAndConditions: false,
+  marketingInfo: true
+};
+
+export const SIGN_UP_FORM_FIELDS_REGEX = [
   {
     name: 'fullName',
     regex: /(?=\d*\D+)^[^~!@#$%*()_—+=|:;"'`<>,.?/^]+$/
