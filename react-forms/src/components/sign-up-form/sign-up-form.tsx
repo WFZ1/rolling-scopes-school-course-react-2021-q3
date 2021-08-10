@@ -4,7 +4,10 @@ import React from 'react';
 import ISignUpFormProps from '../../types/sign-up-form-props.type';
 import ISignUpFormState from '../../types/sign-up-form-state.type';
 import ISignUpFormFieldsValues from '../../types/sign-up-form-fields-values.type';
-import { SIGN_UP_FORM_FIELDS_REGEX, SIGN_UP_FORM_FIELDS_VALUES } from '../../constants';
+import {
+  SIGN_UP_FORM_FIELDS_REGEX,
+  SIGN_UP_FORM_FIELDS_VALUES,
+} from '../../constants';
 
 export default class SignUpForm extends React.Component<ISignUpFormProps, ISignUpFormState> {
   private successMessage: React.RefObject<HTMLParagraphElement>;
@@ -16,14 +19,14 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
 
     this.state = {
       fields: { ...SIGN_UP_FORM_FIELDS_VALUES },
-      errors: []
+      errors: [],
     };
   }
 
   private resetForm(): void {
     this.setState((prevState) => ({
       ...prevState,
-      fields: { ...SIGN_UP_FORM_FIELDS_VALUES }
+      fields: { ...SIGN_UP_FORM_FIELDS_VALUES },
     }));
   }
 
@@ -31,7 +34,9 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
     this.successMessage.current?.classList.add('sign-up-form__success_visible');
 
     setTimeout(() => {
-      this.successMessage.current?.classList.remove('sign-up-form__success_visible');
+      this.successMessage.current?.classList.remove(
+        'sign-up-form__success_visible',
+      );
     }, 5000);
   }
 
@@ -42,7 +47,9 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
     let errors: string[] = [];
 
     keys.forEach((key) => {
-      const isErrorsArr = this.checkValidation(key as keyof ISignUpFormFieldsValues);
+      const isErrorsArr = this.checkValidation(
+        key as keyof ISignUpFormFieldsValues,
+      );
 
       if (isErrorsArr) {
         const allErrors = [...errors, ...isErrorsArr];
@@ -53,10 +60,9 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
     if (errors.length) {
       this.setState((prevState) => ({
         ...prevState,
-        errors
+        errors,
       }));
-    }
-    else {
+    } else {
       this.props.saveUserData(this.state.fields);
       this.resetForm();
       this.showSuccessMessage();
@@ -71,20 +77,22 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
       ...prevState,
       fields: {
         ...prevState.fields,
-        [target.name]: value
-      }
+        [target.name]: value,
+      },
     }));
   }
 
-  private checkValidation(fieldName: keyof ISignUpFormFieldsValues): string[] | false {
-    const field = SIGN_UP_FORM_FIELDS_REGEX.find((fld) => fld.name === fieldName);
+  private checkValidation(
+    fieldName: keyof ISignUpFormFieldsValues,
+  ): string[] | false {
+    const field = SIGN_UP_FORM_FIELDS_REGEX.find(
+      (fld) => fld.name === fieldName,
+    );
 
     if (!field) return false;
 
     const fieldValue = String(this.state.fields[fieldName]);
-    let errors = [
-      ...this.state.errors.filter(fld => fld !== fieldName),
-    ];
+    let errors = [...this.state.errors.filter((fld) => fld !== fieldName)];
 
     if (!field.regex.test(fieldValue)) {
       errors = [...errors, fieldName];
@@ -105,70 +113,103 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
 
         this.setState((previousState) => ({
           ...previousState,
-          errors
+          errors,
         }));
       }
     });
   }
 
-  componentDidUpdate(prevProps: ISignUpFormProps, prevState: ISignUpFormState): void {
+  componentDidUpdate(
+    prevProps: ISignUpFormProps,
+    prevState: ISignUpFormState,
+  ): void {
     this.defineChangedField(prevState);
   }
 
   render(): JSX.Element {
     return (
-      <form className={`sign-up-form ${this.props.classes}`} noValidate onSubmit={ (e) => this.handleSubmit(e) }>
+      <form
+        className={`sign-up-form ${this.props.classes}`}
+        noValidate
+        onSubmit={(e) => this.handleSubmit(e)}
+      >
         <section className="sign-up-form__section">
           <h4 className="sign-up-form__subtitle">Account</h4>
 
-          <div className={ `sign-up-form__input-group sign-up-form__input-group-icon ${ this.state.errors.includes('fullName') ? 'sign-up-form__input__invalid' : '' }` }>
+          <div
+            className={`sign-up-form__input-group sign-up-form__input-group-icon ${
+              this.state.errors.includes('fullName')
+                ? 'sign-up-form__input__invalid'
+                : ''
+            }`}
+          >
             <input
               className="sign-up-form__input"
               type="text"
-              value={ this.state.fields.fullName }
+              value={this.state.fields.fullName}
               name="fullName"
               placeholder="Full Name"
               required
-              onChange={ (e) => this.handleChange(e) }
+              onChange={(e) => this.handleChange(e)}
             />
             <div className="sign-up-form__input-icon">
               <i className="fa fa-user"></i>
             </div>
             <p className="sign-up-form__input-error">
-              { 'Full name can\'t be empty, contain only numbers, contain service characters (~ ! @ # $ % * () _ — + = | : ; " \' ` < > , . ? / ^).' }
+              {
+                "Full name can't be empty, contain only numbers, contain service characters (~ ! @ # $ % * () _ — + = | : ; \" ' ` < > , . ? / ^)."
+              }
             </p>
           </div>
 
-          <div className={ `sign-up-form__input-group sign-up-form__input-group-icon ${ this.state.errors.includes('email') ? 'sign-up-form__input__invalid' : '' }` }>
+          <div
+            className={`sign-up-form__input-group sign-up-form__input-group-icon ${
+              this.state.errors.includes('email')
+                ? 'sign-up-form__input__invalid'
+                : ''
+            }`}
+          >
             <input
               className="sign-up-form__input"
               type="email"
-              value={ this.state.fields.email }
+              value={this.state.fields.email}
               name="email"
               placeholder="Email Address"
               required
-              onChange={ (e) => this.handleChange(e) }
+              onChange={(e) => this.handleChange(e)}
             />
             <div className="sign-up-form__input-icon">
               <i className="fa fa-envelope"></i>
             </div>
-            <p className="sign-up-form__input-error">Email can&rsquo;t be empty, must comply with the standard email generation rule RFC</p>
+            <p className="sign-up-form__input-error">
+              Email can&rsquo;t be empty, must comply with the standard email
+              generation rule RFC
+            </p>
           </div>
 
-          <div className={ `sign-up-form__input-group sign-up-form__input-group-icon ${ this.state.errors.includes('password') ? 'sign-up-form__input__invalid' : '' }` }>
+          <div
+            className={`sign-up-form__input-group sign-up-form__input-group-icon ${
+              this.state.errors.includes('password')
+                ? 'sign-up-form__input__invalid'
+                : ''
+            }`}
+          >
             <input
               className="sign-up-form__input"
               type="password"
-              value={ this.state.fields.password }
+              value={this.state.fields.password}
               name="password"
               placeholder="Password"
               required
-              onChange={ (e) => this.handleChange(e) }
+              onChange={(e) => this.handleChange(e)}
             />
             <div className="sign-up-form__input-icon">
               <i className="fa fa-key"></i>
             </div>
-            <p className="sign-up-form__input-error">Password must have length from 6 to 20 characters, contain numbers, small and capital letters.</p>
+            <p className="sign-up-form__input-error">
+              Password must have length from 6 to 20 characters, contain
+              numbers, small and capital letters.
+            </p>
           </div>
         </section>
 
@@ -176,32 +217,46 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
           <div className="sign-up-form__col-half">
             <h4 className="sign-up-form__subtitle">Date of Birth</h4>
 
-            <div className={ `sign-up-form__input-group ${ this.state.errors.includes('dateOfBirth') ? 'sign-up-form__input__invalid' : '' }` }>
+            <div
+              className={`sign-up-form__input-group ${
+                this.state.errors.includes('dateOfBirth')
+                  ? 'sign-up-form__input__invalid'
+                  : ''
+              }`}
+            >
               <input
                 className="sign-up-form__input sign-up-form__input-date"
                 type="date"
-                value={ this.state.fields.dateOfBirth }
+                value={this.state.fields.dateOfBirth}
                 name="dateOfBirth"
                 min="1900-01-01"
                 max="2021-12-31"
-                onChange={ (e) => this.handleChange(e) }
+                onChange={(e) => this.handleChange(e)}
               />
-              <p className="sign-up-form__input-error">Date of birth must set.</p>
+              <p className="sign-up-form__input-error">
+                Date of birth must set.
+              </p>
             </div>
           </div>
 
           <div className="sign-up-form__col-half">
             <h4 className="sign-up-form__subtitle">Gender</h4>
 
-            <div className={ `sign-up-form__input-group ${ this.state.errors.includes('gender') ? 'sign-up-form__input__invalid' : '' }` }>
+            <div
+              className={`sign-up-form__input-group ${
+                this.state.errors.includes('gender')
+                  ? 'sign-up-form__input__invalid'
+                  : ''
+              }`}
+            >
               <input
                 className="sign-up-form__input sign-up-form__input-radio"
                 id="sign-up-form__gender-male"
                 type="radio"
-                checked={ this.state.fields.gender === 'male' }
+                checked={this.state.fields.gender === 'male'}
                 name="gender"
                 value="male"
-                onChange={ (e) => this.handleChange(e) }
+                onChange={(e) => this.handleChange(e)}
               />
               <label
                 className="sign-up-form__label"
@@ -214,10 +269,10 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
                 className="sign-up-form__input sign-up-form__input-radio"
                 id="sign-up-form__gender-female"
                 type="radio"
-                checked={ this.state.fields.gender === 'female' }
+                checked={this.state.fields.gender === 'female'}
                 name="gender"
                 value="female"
-                onChange={ (e) => this.handleChange(e) }
+                onChange={(e) => this.handleChange(e)}
               />
               <label
                 className="sign-up-form__label"
@@ -239,10 +294,10 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
               className="sign-up-form__input sign-up-form__input-radio"
               id="sign-up-form__payment-method-card"
               type="radio"
-              checked={ this.state.fields.paymentMethod === 'card' }
+              checked={this.state.fields.paymentMethod === 'card'}
               name="paymentMethod"
               value="card"
-              onChange={ (e) => this.handleChange(e) }
+              onChange={(e) => this.handleChange(e)}
             />
             <label
               className="sign-up-form__label"
@@ -255,10 +310,10 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
               className="sign-up-form__input sign-up-form__input-radio"
               id="sign-up-form__payment-method-paypal"
               type="radio"
-              checked={ this.state.fields.paymentMethod === 'paypal' }
+              checked={this.state.fields.paymentMethod === 'paypal'}
               name="paymentMethod"
               value="paypal"
-              onChange={ (e) => this.handleChange(e) }
+              onChange={(e) => this.handleChange(e)}
               disabled
             />
             <label
@@ -269,48 +324,71 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
             </label>
           </div>
 
-          <div className={ `sign-up-form__input-group sign-up-form__input-group-icon ${ this.state.errors.includes('cardNumber') ? 'sign-up-form__input__invalid' : '' }` }>
+          <div
+            className={`sign-up-form__input-group sign-up-form__input-group-icon ${
+              this.state.errors.includes('cardNumber')
+                ? 'sign-up-form__input__invalid'
+                : ''
+            }`}
+          >
             <input
               className="sign-up-form__input"
               type="text"
-              value={ this.state.fields.cardNumber }
+              value={this.state.fields.cardNumber}
               name="cardNumber"
               placeholder="Card Number"
-              maxLength={ 16 }
-              onChange={ (e) => this.handleChange(e) }
+              maxLength={16}
+              onChange={(e) => this.handleChange(e)}
             />
             <div className="sign-up-form__input-icon">
               <i className="fa fa-credit-card"></i>
             </div>
-            <p className="sign-up-form__input-error">Card number must have 16 numbers.</p>
+            <p className="sign-up-form__input-error">
+              Card number must have 16 numbers.
+            </p>
           </div>
 
           <div className="sign-up-form__col-half">
-            <div className={ `sign-up-form__input-group sign-up-form__input-group-icon ${ this.state.errors.includes('cardCvv') ? 'sign-up-form__input__invalid' : '' }` }>
+            <div
+              className={`sign-up-form__input-group sign-up-form__input-group-icon ${
+                this.state.errors.includes('cardCvv')
+                  ? 'sign-up-form__input__invalid'
+                  : ''
+              }`}
+            >
               <input
                 className="sign-up-form__input"
                 type="text"
-                value={ this.state.fields.cardCvv }
+                value={this.state.fields.cardCvv}
                 name="cardCvv"
                 placeholder="Card CVV"
-                maxLength={ 3 }
-                onChange={ (e) => this.handleChange(e) }
+                maxLength={3}
+                onChange={(e) => this.handleChange(e)}
               />
               <div className="sign-up-form__input-icon">
                 <i className="fa fa-user"></i>
               </div>
-              <p className="sign-up-form__input-error">Card CVV must have 3 numbers.</p>
+              <p className="sign-up-form__input-error">
+                Card CVV must have 3 numbers.
+              </p>
             </div>
           </div>
 
           <div className="sign-up-form__col-half">
-            <div className={ `sign-up-form__input-group ${ (this.state.errors.includes('cardExpireMonth') || this.state.errors.includes('cardExpireYear')) ? 'sign-up-form__input__invalid' : '' }` }>
+            <div
+              className={`sign-up-form__input-group ${
+                this.state.errors.includes('cardExpireMonth') ||
+                this.state.errors.includes('cardExpireYear')
+                  ? 'sign-up-form__input__invalid'
+                  : ''
+              }`}
+            >
               <select
                 className="sign-up-form__select sign-up-form__card-expire-month"
-                value={ this.state.fields.cardExpireMonth }
+                value={this.state.fields.cardExpireMonth}
                 name="cardExpireMonth"
-                onChange={ (e) => this.handleChange(e) }
-                onBlur={ (e) => this.handleChange(e) }
+                onChange={(e) => this.handleChange(e)}
+                onBlur={(e) => this.handleChange(e)}
               >
                 <option className="sign-up-form__option" value="pick-month">
                   Pick month
@@ -354,10 +432,10 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
               </select>
               <select
                 className="sign-up-form__select sign-up-form__card-expire-year"
-                value={ this.state.fields.cardExpireYear }
+                value={this.state.fields.cardExpireYear}
                 name="cardExpireYear"
-                onChange={ (e) => this.handleChange(e) }
-                onBlur={ (e) => this.handleChange(e) }
+                onChange={(e) => this.handleChange(e)}
+                onBlur={(e) => this.handleChange(e)}
               >
                 <option className="sign-up-form__option" value="pick-year">
                   Pick year
@@ -394,7 +472,9 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
                 </option>
               </select>
 
-              <p className="sign-up-form__input-error">Card expiry date must set.</p>
+              <p className="sign-up-form__input-error">
+                Card expiry date must set.
+              </p>
             </div>
           </div>
         </section>
@@ -402,15 +482,21 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
         <section className="sign-up-form__section sign-up-form__terms">
           <h4 className="sign-up-form__subtitle">Terms and Conditions</h4>
 
-          <div className={ `sign-up-form__input-group ${ this.state.errors.includes('termsAndConditions') ? 'sign-up-form__input__invalid' : '' }` }>
+          <div
+            className={`sign-up-form__input-group ${
+              this.state.errors.includes('termsAndConditions')
+                ? 'sign-up-form__input__invalid'
+                : ''
+            }`}
+          >
             <input
               className="sign-up-form__input sign-up-form__input-checkbox"
               id="sign-up-form__terms"
-              checked={ this.state.fields.termsAndConditions }
+              checked={this.state.fields.termsAndConditions}
               type="checkbox"
               name="termsAndConditions"
               required
-              onChange={ (e) => this.handleChange(e) }
+              onChange={(e) => this.handleChange(e)}
             />
             <label
               className="sign-up-form__label"
@@ -419,33 +505,56 @@ export default class SignUpForm extends React.Component<ISignUpFormProps, ISignU
               I accept the terms and conditions for signing up to this service,
               and hereby confirm I have read the privacy policy.
             </label>
-            <p className="sign-up-form__input-error">Please accept our terms & conditions.</p>
+            <p className="sign-up-form__input-error">
+              Please accept our terms & conditions.
+            </p>
           </div>
         </section>
 
         <section className="sign-up-form__section">
           <h4 className="sign-up-form__subtitle">Email Notifications</h4>
 
-          <div className={ `sign-up-form__input-group sign-up-form__switcher-container ${ this.state.errors.includes('marketingInfo') ? 'sign-up-form__input__invalid' : '' }` }>
+          <div
+            className={`sign-up-form__input-group sign-up-form__switcher-container ${
+              this.state.errors.includes('marketingInfo')
+                ? 'sign-up-form__input__invalid'
+                : ''
+            }`}
+          >
             <label className="sign-up-form__switcher sign-up-form__notifications-switcher">
               <input
                 className="sign-up-form__switcher-checkbox"
                 type="checkbox"
-                checked={ this.state.fields.marketingInfo }
+                checked={this.state.fields.marketingInfo}
                 name="marketingInfo"
-                onChange={ (e) => this.handleChange(e) }
+                onChange={(e) => this.handleChange(e)}
               />
-              <span className="sign-up-form__switcher-panel" data-on="On" data-off="Off"></span>
+              <span
+                className="sign-up-form__switcher-panel"
+                data-on="On"
+                data-off="Off"
+              ></span>
               <span className="sign-up-form__switcher-handle"></span>
             </label>
-            <p className="sign-up-form__switcher-text">Marketing information, offers, updates, promotions, including current or future product announcements and updates.</p>
-            <p className="sign-up-form__input-error">Please enable email notifications.</p>
+            <p className="sign-up-form__switcher-text">
+              Marketing information, offers, updates, promotions, including
+              current or future product announcements and updates.
+            </p>
+            <p className="sign-up-form__input-error">
+              Please enable email notifications.
+            </p>
           </div>
         </section>
 
-        <input className="sign-up-form__btn-submit" type="submit" value="Submit" />
+        <input
+          className="sign-up-form__btn-submit"
+          type="submit"
+          value="Submit"
+        />
 
-        <p className="sign-up-form__success" ref={ this.successMessage }>Data saved successfully.</p>
+        <p className="sign-up-form__success" ref={this.successMessage}>
+          Data saved successfully.
+        </p>
       </form>
     );
   }

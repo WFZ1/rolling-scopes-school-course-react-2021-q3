@@ -80,7 +80,8 @@
       border-right-color: #7ed321;
     }
 
-    .fa, .fab {
+    .fa,
+    .fab {
       color: #7ed321;
     }
   }
@@ -120,7 +121,8 @@
     transition: border-right-color 0.35s ease-in-out;
   }
 
-  .fa, .fab {
+  .fa,
+  .fab {
     transition: color 0.35s ease-in-out;
   }
 }
@@ -132,7 +134,8 @@
   cursor: pointer;
 
   &::-webkit-calendar-picker-indicator {
-    filter: invert(85%) sepia(1%) hue-rotate(356deg) brightness(91%) contrast(83%);
+    filter: invert(85%) sepia(1%) hue-rotate(356deg) brightness(91%)
+      contrast(83%);
     cursor: pointer;
   }
 }
@@ -163,7 +166,7 @@
     &:first-of-type {
       border-radius: 3px 3px 0 0;
 
-      @include at ($min, $phone-md) {
+      @include at($min, $phone-md) {
         border-radius: 3px 0 0 3px;
       }
     }
@@ -171,12 +174,13 @@
     &:last-of-type {
       border-radius: 0 0 3px 3px;
 
-      @include at ($min, $phone-md) {
+      @include at($min, $phone-md) {
         border-radius: 0 3px 3px 0;
       }
     }
 
-    .fa, .fab {
+    .fa,
+    .fab {
       padding-right: 0.4em;
     }
   }
@@ -202,7 +206,7 @@
 .sign-up-form__card-expire-month {
   border-radius: 3px 3px 0 0;
 
-  @include at ($min, $phone + 1) {
+  @include at($min, $phone + 1) {
     border-radius: 3px 0 0 3px;
   }
 }
@@ -210,7 +214,7 @@
 .sign-up-form__card-expire-year {
   border-radius: 0 0 3px 3px;
 
-  @include at ($min, $phone + 1) {
+  @include at($min, $phone + 1) {
     border-radius: 0 3px 3px 0;
   }
 }
@@ -244,8 +248,8 @@
     &::after {
       top: 0.45em;
       left: 0.2em;
-      content: "\f00c";
-      font-family: "Font Awesome 5 Free";
+      content: '\f00c';
+      font-family: 'Font Awesome 5 Free';
       font-size: 0.8em;
       font-weight: 900;
       color: #fff;
@@ -261,7 +265,7 @@
 // Switcher
 
 .sign-up-form__switcher-container {
-  @include at ($min, $phone-xl + 1) {
+  @include at($min, $phone-xl + 1) {
     display: flex;
     flex-wrap: wrap;
   }
@@ -280,7 +284,7 @@
   background-image: linear-gradient(180deg, #eee, #fff 25px);
   box-shadow: inset 0 -1px #fff, inset 0 1px 1px rgb(0 0 0 / 5%);
 
-  @include at ($min, $phone-xl + 1) {
+  @include at($min, $phone-xl + 1) {
     margin-bottom: 0;
     flex-shrink: 0;
   }
@@ -376,7 +380,7 @@
   margin: 0;
   flex: 1;
 
-  @include at ($min, $phone-xl + 1) {
+  @include at($min, $phone-xl + 1) {
     margin-left: 0.5em;
   }
 }

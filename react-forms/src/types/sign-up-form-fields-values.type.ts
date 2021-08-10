@@ -11,4 +11,4 @@ export default interface ISignUpFormFieldsValues {
   cardExpireYear: string;
   termsAndConditions: boolean;
   marketingInfo: boolean;
-};
+}

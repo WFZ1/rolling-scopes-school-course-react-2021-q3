@@ -11,13 +11,13 @@ export default class HomePage extends React.Component<unknown, { usersData: ISig
     this.saveUserData = this.saveUserData.bind(this);
 
     this.state = {
-      usersData: []
+      usersData: [],
     };
   }
 
   saveUserData(fields: ISignUpFormFieldsValues): void {
     this.setState((prevState) => ({
-      usersData: prevState.usersData.concat(fields)
+      usersData: prevState.usersData.concat(fields),
     }));
   }
 
@@ -26,8 +26,14 @@ export default class HomePage extends React.Component<unknown, { usersData: ISig
 
     return (
       <main className="home-page__main main">
-        <SignUpForm classes="home-page__sign-up-form" saveUserData={ this.saveUserData } />
-        <UsersDataCardsField classes="home-page__users-data-cards-field" usersData={ this.state.usersData } />
+        <SignUpForm
+          classes="home-page__sign-up-form"
+          saveUserData={this.saveUserData}
+        />
+        <UsersDataCardsField
+          classes="home-page__users-data-cards-field"
+          usersData={this.state.usersData}
+        />
       </main>
     );
   }
