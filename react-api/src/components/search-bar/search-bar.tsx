@@ -1,10 +1,11 @@
 import './search-bar.scss';
 import React from 'react';
 import ISearchBarState from '../../types/search-bar-state.type';
+import IArticleProps from '../../types/article-props.type';
 import { NEWS_API_KEY, NEWS_API_SORT_TYPE } from '../../constants';
 
-export default class SearchBar extends React.Component<{ classes: string }, ISearchBarState> {
-  constructor(props: { classes: string }) {
+export default class SearchBar extends React.Component<{ classes: string, saveArticles: (articles: IArticleProps[]) => void }, ISearchBarState> {
+  constructor(props: { classes: string, saveArticles: (articles: IArticleProps[]) => void }) {
     super(props);
 
     this.state = {
@@ -29,7 +30,7 @@ export default class SearchBar extends React.Component<{ classes: string }, ISea
 
       const res = await fetch(url);
       const data = await res.json();
-      console.log(data);
+      this.props.saveArticles(data.articles);
     }
     catch (err: unknown) {
       console.error(e);

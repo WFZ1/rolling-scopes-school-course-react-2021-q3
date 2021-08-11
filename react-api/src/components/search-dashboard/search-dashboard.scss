@@ -1,3 +1,13 @@
+@import "../../breakpoints.scss";
+
 .search-dashboard__bar {
+  margin: 0 auto;
+
+  @include at ($min, $phone) {
+    margin-bottom: 40px;
+  }
+}
+
+.search-dashboard__results {
   margin: 0 auto;
 }
