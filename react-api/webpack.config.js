@@ -13,7 +13,7 @@ const esLintPlugin = (isDev) => isDev ? [] :
 
 module.exports = ({ develop }) => ({
   mode: develop ? 'development' : 'production',
-  entry: { app: './src/index.tsx' },
+  entry: ['babel-polyfill', './src/index.tsx'],
   devtool: develop ? 'inline-source-map' : false,
   devServer: { contentBase: path.join(__dirname, 'public') },
   module: {

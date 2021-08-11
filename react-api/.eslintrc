@@ -25,6 +25,7 @@
     "jsx-a11y"
   ],
   "rules": {
+    "no-console": "off",
     "no-plusplus": "off",
     "indent": ["warn", 2, {
       "SwitchCase": 1
