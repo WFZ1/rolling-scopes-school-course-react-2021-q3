@@ -7,7 +7,7 @@ export default class HomePage extends React.Component {
     document.body.className = 'page home-page';
 
     return (
-      <main className="home-page__main main">
+      <main className="home-page__main page__main main">
         <SearchDashboard />
       </main>
     );

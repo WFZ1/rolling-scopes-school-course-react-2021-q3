@@ -131,6 +131,10 @@ input {
   background-color: #f1f1f1;
 }
 
+.page__title {
+  text-align: center;
+}
+
 .main {
   max-width: 1440px;
   margin: 0 auto;
@@ -139,4 +143,66 @@ input {
   @include at($min, $phone) {
     padding: 0 20px;
   }
+}
+
+.page__main {
+  padding-top: 20px;
+  padding-bottom: 30px;
+
+  @include at($min, $phone + 1) {
+    padding-top: 30px;
+    padding-bottom: 50px;
+  }
+}
+
+/**
+ * ----------------------------------------------------------------------------
+ *  HEADER
+ * ----------------------------------------------------------------------------
+ */
+
+.header {
+  background-color: #4c4c4c;
+}
+
+.header__nav {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 10px 15px 12px;
+
+  @include at ($min, $phone-xl) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.header__nav-list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: center;
+}
+
+.header__nav-item {
+  margin: 0 20px;
+  padding: 5px;
+
+  @include at ($min, $phone-xl) {
+    margin: 0 30px;
+  }
+}
+
+.header__nav-link {
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  border-bottom: 2px solid transparent;
+  text-decoration: none;
+  transition: color .3s, border-bottom .3s;
+}
+
+.header__nav-link_active {
+  color: #b5b5b5;
+  border-bottom-color: #b5b5b5;
 }
