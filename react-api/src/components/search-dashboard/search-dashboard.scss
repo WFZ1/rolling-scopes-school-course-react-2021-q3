@@ -1,9 +1,9 @@
-@import "../../breakpoints.scss";
+@import '../../breakpoints.scss';
 
 .search-dashboard__bar {
   margin: 0 auto;
 
-  @include at ($min, $phone) {
+  @include at($min, $phone) {
     margin-bottom: 40px;
   }
 }

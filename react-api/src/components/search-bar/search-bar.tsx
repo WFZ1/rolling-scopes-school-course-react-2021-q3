@@ -4,8 +4,14 @@ import ISearchBarState from '../../types/search-bar-state.type';
 import IArticleProps from '../../types/article-props.type';
 import { NEWS_API_KEY, NEWS_API_SORT_TYPE } from '../../constants';
 
-export default class SearchBar extends React.Component<{ classes: string, saveArticles: (articles: IArticleProps[]) => void }, ISearchBarState> {
-  constructor(props: { classes: string, saveArticles: (articles: IArticleProps[]) => void }) {
+export default class SearchBar extends React.Component<
+  { classes: string; saveArticles: (articles: IArticleProps[]) => void },
+  ISearchBarState
+> {
+  constructor(props: {
+    classes: string;
+    saveArticles: (articles: IArticleProps[]) => void;
+  }) {
     super(props);
 
     this.state = {
@@ -17,56 +23,57 @@ export default class SearchBar extends React.Component<{ classes: string, saveAr
     };
   }
 
-  private async handleSubmit(e: React.FormEvent<HTMLFormElement>): Promise<void> {
+  private async handleSubmit(
+    e: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> {
     e.preventDefault();
 
     this.setState((prevState) => ({
       ...prevState,
-      isLoading: true
+      isLoading: true,
     }));
 
     try {
-      const url = `https://newsapi.org/v2/everything?q=${ this.state.search }&sortBy=${ this.state.sortBy }&pageSize=${ this.state.pageSize }&page=${ this.state.page }&apiKey=${ NEWS_API_KEY }`;
+      const url = `https://newsapi.org/v2/everything?q=${this.state.search}&sortBy=${this.state.sortBy}&pageSize=${this.state.pageSize}&page=${this.state.page}&apiKey=${NEWS_API_KEY}`;
 
       const res = await fetch(url);
       const data = await res.json();
       this.props.saveArticles(data.articles);
-    }
-    catch (err: unknown) {
+    } catch (err: unknown) {
       console.error(e);
-    }
-    finally {
+    } finally {
       this.setState((prevState) => ({
         ...prevState,
-        isLoading: false
+        isLoading: false,
       }));
     }
-  };
+  }
 
   private handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { value } = e.target;
 
     this.setState((prevState) => ({
       ...prevState,
-      [e.target.name]: value
+      [e.target.name]: value,
     }));
-  };
+  }
 
   render(): JSX.Element {
     return (
-      <form className={ `search-bar ${ this.props.classes }` } onSubmit={ (e) => this.handleSubmit(e) }>
+      <form
+        className={`search-bar ${this.props.classes}`}
+        onSubmit={(e) => this.handleSubmit(e)}
+      >
         <div className="search-bar__panel">
           <input
             className="search-bar__field search-bar__panel-field"
             type="search"
-            value={ this.state.search }
+            value={this.state.search}
             name="search"
-            onChange={ (e) => this.handleChange(e) }
+            onChange={(e) => this.handleChange(e)}
           />
-          <button
-            className="search-bar__btn"
-            disabled={ this.state.isLoading }>
-            { this.state.isLoading ? 'Loading...' : 'Search' }
+          <button className="search-bar__btn" disabled={this.state.isLoading}>
+            {this.state.isLoading ? 'Loading...' : 'Search'}
           </button>
         </div>
 
@@ -77,10 +84,10 @@ export default class SearchBar extends React.Component<{ classes: string, saveAr
               <input
                 className="search-bar__sort-by-field"
                 type="radio"
-                value={ NEWS_API_SORT_TYPE.relevant }
+                value={NEWS_API_SORT_TYPE.relevant}
                 name="sortBy"
-                checked={ this.state.sortBy === NEWS_API_SORT_TYPE.relevant }
-                onChange={ (e) => this.handleChange(e) }
+                checked={this.state.sortBy === NEWS_API_SORT_TYPE.relevant}
+                onChange={(e) => this.handleChange(e)}
               />
               Relevant
             </label>
@@ -88,10 +95,10 @@ export default class SearchBar extends React.Component<{ classes: string, saveAr
               <input
                 className="search-bar__sort-by-field"
                 type="radio"
-                value={ NEWS_API_SORT_TYPE.popular }
+                value={NEWS_API_SORT_TYPE.popular}
                 name="sortBy"
-                checked={ this.state.sortBy === NEWS_API_SORT_TYPE.popular }
-                onChange={ (e) => this.handleChange(e) }
+                checked={this.state.sortBy === NEWS_API_SORT_TYPE.popular}
+                onChange={(e) => this.handleChange(e)}
               />
               Popular
             </label>
@@ -99,23 +106,25 @@ export default class SearchBar extends React.Component<{ classes: string, saveAr
               <input
                 className="search-bar__sort-by-field"
                 type="radio"
-                value={ NEWS_API_SORT_TYPE.newest }
+                value={NEWS_API_SORT_TYPE.newest}
                 name="sortBy"
-                checked={ this.state.sortBy === NEWS_API_SORT_TYPE.newest }
-                onChange={ (e) => this.handleChange(e) }
+                checked={this.state.sortBy === NEWS_API_SORT_TYPE.newest}
+                onChange={(e) => this.handleChange(e)}
               />
               Newest
             </label>
           </div>
           <div className="search-bar__option search-bar__pagination">
             <label className="search-bar__variant search-bar__pagination-variant">
-              <span className="search-bar__variant-title">Articles per page:</span>
+              <span className="search-bar__variant-title">
+                Articles per page:
+              </span>
               <input
                 className="search-bar__field search-bar__page-size-field"
                 type="number"
-                value={ this.state.pageSize }
+                value={this.state.pageSize}
                 name="pageSize"
-                onChange={ (e) => this.handleChange(e) }
+                onChange={(e) => this.handleChange(e)}
               />
             </label>
             <label className="search-bar__variant search-bar__pagination-variant">
@@ -123,9 +132,9 @@ export default class SearchBar extends React.Component<{ classes: string, saveAr
               <input
                 className="search-bar__field search-bar__page-field"
                 type="number"
-                value={ this.state.page }
+                value={this.state.page}
                 name="page"
-                onChange={ (e) => this.handleChange(e) }
+                onChange={(e) => this.handleChange(e)}
               />
             </label>
           </div>
