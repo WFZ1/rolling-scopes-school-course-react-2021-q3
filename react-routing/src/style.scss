@@ -127,22 +127,14 @@ input {
   font-family: Roboto, sans-serif;
 }
 
+/**
+ * ----------------------------------------------------------------------------
+ *  PAGE
+ * ----------------------------------------------------------------------------
+ */
+
 .page {
   background-color: #f1f1f1;
-}
-
-.page__title {
-  text-align: center;
-}
-
-.main {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 15px;
-
-  @include at($min, $phone) {
-    padding: 0 20px;
-  }
 }
 
 .page__main {
@@ -153,6 +145,10 @@ input {
     padding-top: 30px;
     padding-bottom: 50px;
   }
+}
+
+.page__title {
+  text-align: center;
 }
 
 /**
@@ -205,4 +201,48 @@ input {
 .header__nav-link_active {
   color: #b5b5b5;
   border-bottom-color: #b5b5b5;
+}
+
+/**
+ * ----------------------------------------------------------------------------
+ *  MAIN
+ * ----------------------------------------------------------------------------
+ */
+
+.main {
+  position: absolute;
+  left: 0;
+  right: 0;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @include at($min, $phone) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.main-enter {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.main-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.main-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.main-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
 }
