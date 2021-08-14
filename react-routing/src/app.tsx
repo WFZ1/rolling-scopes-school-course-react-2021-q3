@@ -15,7 +15,7 @@ const ROUTES = [
   { path: '/', name: 'Home', Component: HomePage },
   { path: '/about', name: 'About', Component: AboutPage },
   { path: '/details', Component: DetailsPage },
-  { path: '*', name: '404', Component: NotFoundPage }
+  { path: '*', Component: NotFoundPage }
 ]
 
 export default class App extends React.Component {
