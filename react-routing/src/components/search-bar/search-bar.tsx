@@ -1,17 +1,11 @@
 import './search-bar.scss';
 import React from 'react';
+import ISearchBarProps from '../../types/search-bar-props.type';
 import ISearchBarState from '../../types/search-bar-state.type';
-import IArticleProps from '../../types/article-props.type';
 import { NEWS_API_KEY, NEWS_API_SORT_TYPE } from '../../constants';
 
-export default class SearchBar extends React.Component<
-  { classes: string; saveArticles: (articles: IArticleProps[]) => void },
-  ISearchBarState
-> {
-  constructor(props: {
-    classes: string;
-    saveArticles: (articles: IArticleProps[]) => void;
-  }) {
+export default class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
+  constructor(props: ISearchBarProps) {
     super(props);
 
     this.state = {
@@ -33,14 +27,21 @@ export default class SearchBar extends React.Component<
       isLoading: true,
     }));
 
+    const apiQueryOpts = {
+      q: this.state.search,
+      sortBy: this.state.sortBy,
+      pageSize: this.state.pageSize,
+      page: this.state.page
+    }
+
     try {
       const url = `https://newsapi.org/v2/everything?q=${this.state.search}&sortBy=${this.state.sortBy}&pageSize=${this.state.pageSize}&page=${this.state.page}&apiKey=${NEWS_API_KEY}`;
 
       const res = await fetch(url);
       const data = await res.json();
-      this.props.saveArticles(data.articles);
+      this.props.saveData(data.articles, apiQueryOpts);
     } catch (err: unknown) {
-      console.error(e);
+      console.error(err);
     } finally {
       this.setState((prevState) => ({
         ...prevState,

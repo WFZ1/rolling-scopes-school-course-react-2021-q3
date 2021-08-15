@@ -16,7 +16,7 @@ const ROUTES = [
   { path: '/about', name: 'About', Component: AboutPage },
   { path: '/details', Component: DetailsPage },
   { path: '*', Component: NotFoundPage }
-]
+];
 
 export default class App extends React.Component {
   render(): JSX.Element {
