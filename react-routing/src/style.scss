@@ -1,0 +1,248 @@
+@import './breakpoints.scss';
+
+/**
+ * --------------------------------------------------------------------------------
+ *  FONTS
+ * --------------------------------------------------------------------------------
+ */
+
+@font-face {
+  font-family: Roboto;
+  src: url('./assets/fonts/Roboto-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('./assets/fonts/Roboto-ThinItalic.woff2') format('woff2');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('./assets/fonts/Roboto-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('./assets/fonts/Roboto-LightItalic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('./assets/fonts/Roboto-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('./assets/fonts/Roboto-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('./assets/fonts/Roboto-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('./assets/fonts/Roboto-MediumItalic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('./assets/fonts/Roboto-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('./assets/fonts/Roboto-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('./assets/fonts/Roboto-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url('./assets/fonts/Roboto-BlackItalic.woff2') format('woff2');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/**
+ * ----------------------------------------------------------------------------
+ *  MAIN
+ * ----------------------------------------------------------------------------
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body,
+input {
+  font-family: Roboto, sans-serif;
+}
+
+/**
+ * ----------------------------------------------------------------------------
+ *  PAGE
+ * ----------------------------------------------------------------------------
+ */
+
+.page {
+  background-color: #f1f1f1;
+}
+
+.page__main {
+  padding-top: 20px;
+  padding-bottom: 30px;
+
+  @include at($min, $phone + 1) {
+    padding-top: 30px;
+    padding-bottom: 50px;
+  }
+}
+
+.page__title {
+  text-align: center;
+}
+
+/**
+ * ----------------------------------------------------------------------------
+ *  HEADER
+ * ----------------------------------------------------------------------------
+ */
+
+.header {
+  background-color: #4c4c4c;
+}
+
+.header__nav {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 10px 15px 12px;
+
+  @include at ($min, $phone-xl) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.header__nav-list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: center;
+}
+
+.header__nav-item {
+  margin: 0 20px;
+  padding: 5px;
+
+  @include at ($min, $phone-xl) {
+    margin: 0 30px;
+  }
+}
+
+.header__nav-link {
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  border-bottom: 2px solid transparent;
+  text-decoration: none;
+  transition: color .3s, border-bottom .3s;
+}
+
+.header__nav-link_active {
+  color: #b5b5b5;
+  border-bottom-color: #b5b5b5;
+}
+
+/**
+ * ----------------------------------------------------------------------------
+ *  MAIN
+ * ----------------------------------------------------------------------------
+ */
+
+.main {
+  position: absolute;
+  left: 0;
+  right: 0;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @include at($min, $phone) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.main-enter {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.main-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.main-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.main-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}
