@@ -2,7 +2,7 @@ import './article.scss';
 import React from 'react';
 import IArticleProps from '../../types/article-props.type';
 
-export default class Article extends React.Component<{ data: IArticleProps, id: string }> {
+export default class Article extends React.Component<{ data: IArticleProps, url: string }> {
   render(): JSX.Element {
     return (
       <div className="article">
@@ -28,7 +28,7 @@ export default class Article extends React.Component<{ data: IArticleProps, id: 
             On {this.props.data.publishedAt.split('T')[0]}
           </span>
           <p className="article__content">{this.props.data.description}</p>
-          <a className="article__read-more" href={`/details?${this.props.id}`}>
+          <a className="article__read-more" href={`/details/${this.props.url}`}>
             Read more
           </a>
         </div>
