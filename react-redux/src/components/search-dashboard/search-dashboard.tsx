@@ -1,6 +1,6 @@
 import './search-dashboard.scss';
 import React from 'react';
-import SearchBar from '../search-bar/search-bar';
+import { SearchBar } from '../search-bar/search-bar';
 import ArticlesField from '../articles-field/articles-field';
 import IArticleProps from '../../types/article-props.type';
 import INewsApiQueryOpts from '../../types/news-api-query-opts.type';

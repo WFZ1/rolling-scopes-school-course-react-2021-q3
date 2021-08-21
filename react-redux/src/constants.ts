@@ -5,3 +5,15 @@ export const NEWS_API_SORT_TYPE = {
   popular: 'popularity',
   newest: 'publishedAt',
 };
+
+export const GET_ARTICLES = 'get/articles';
+
+export const INITIAL_STATE = {
+  articles: [],
+  apiQueryOpts: {
+    q: '',
+    sortBy: '',
+    pageSize: 0,
+    page: 0
+  }
+};
