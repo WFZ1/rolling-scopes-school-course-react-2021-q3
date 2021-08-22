@@ -1,7 +1,7 @@
 {
-  "name": "rss-react-redux",
+  "name": "react-testing",
   "version": "1.0.0",
-  "description": "https://github.com/rolling-scopes-school/tasks/blob/master/tasks/react/react-redux.md",
+  "description": "https://github.com/rolling-scopes-school/tasks/blob/master/tasks/react/react-testing.md",
   "author": "Pavel Skumenko",
   "scripts": {
     "watch": "webpack --watch",
@@ -36,6 +36,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-webpack-plugin": "^2.5.4",
     "html-webpack-plugin": "^5.3.1",
+    "jest": "^27.0.6",
     "mini-css-extract-plugin": "^1.6.0",
     "prettier": "2.3.0",
     "sass": "^1.32.13",

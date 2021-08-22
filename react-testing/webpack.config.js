@@ -62,7 +62,7 @@ module.exports = ({ develop }) => ({
   plugins: [
     new HtmlWebpackPlugin({
       favicon: './public/favicon.ico',
-      title: 'React Redux',
+      title: 'React. Testing',
       template: './src/index.html'
     }),
     new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
