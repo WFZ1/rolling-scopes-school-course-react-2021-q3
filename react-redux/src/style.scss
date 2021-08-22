@@ -166,7 +166,7 @@ input {
   margin: 0 auto;
   padding: 10px 15px 12px;
 
-  @include at ($min, $phone-xl) {
+  @include at($min, $phone-xl) {
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -184,7 +184,7 @@ input {
   margin: 0 20px;
   padding: 5px;
 
-  @include at ($min, $phone-xl) {
+  @include at($min, $phone-xl) {
     margin: 0 30px;
   }
 }
@@ -195,7 +195,7 @@ input {
   color: #fff;
   border-bottom: 2px solid transparent;
   text-decoration: none;
-  transition: color .3s, border-bottom .3s;
+  transition: color 0.3s, border-bottom 0.3s;
 }
 
 .header__nav-link_active {

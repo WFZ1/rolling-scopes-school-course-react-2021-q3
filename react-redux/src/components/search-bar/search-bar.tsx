@@ -3,9 +3,17 @@ import React, { FC, useState } from 'react';
 import { set } from '../../redux/reducer';
 import { UseAppDispatch } from '../../hooks';
 import IArticleProps from '../../types/article-props.type';
-import { NEWS_API_KEY, NEWS_API_SORT_TYPE, NEWS_API_URL } from '../../constants';
+import {
+  NEWS_API_KEY,
+  NEWS_API_SORT_TYPE,
+  NEWS_API_URL,
+} from '../../constants';
 
-export const SearchBar: FC<{classes: string}> = ({ classes }: {classes: string}) => {
+export const SearchBar: FC<{ classes: string }> = ({
+  classes,
+}: {
+  classes: string;
+}) => {
   const [search, setSearch] = useState<string>('');
   const [sortBy, setSortBy] = useState<string>(NEWS_API_SORT_TYPE.relevant);
   const [pageSize, setPageSize] = useState<number>(5);
@@ -13,10 +21,11 @@ export const SearchBar: FC<{classes: string}> = ({ classes }: {classes: string})
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const dispatch = UseAppDispatch();
 
-  const getArticleIdFromUrl = (url: string): string => url
-    .replace(/https?:\/\//, '')
-    .replace(/\//g, '&')
-    .replace(/\./g, '&dot_');
+  const getArticleIdFromUrl = (url: string): string =>
+    url
+      .replace(/https?:\/\//, '')
+      .replace(/\//g, '&')
+      .replace(/\./g, '&dot_');
 
   const addIdsToArticles = (articles: IArticleProps[]): IArticleProps[] =>
     articles.map((article) => {
@@ -24,7 +33,9 @@ export const SearchBar: FC<{classes: string}> = ({ classes }: {classes: string})
       return article;
     });
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     e.preventDefault();
     setIsLoading(true);
 
@@ -38,20 +49,15 @@ export const SearchBar: FC<{classes: string}> = ({ classes }: {classes: string})
       const articles = addIdsToArticles(data.articles);
 
       dispatch(set({ articles, apiQueryStr }));
-    }
-    catch (err: unknown) {
+    } catch (err: unknown) {
       console.error(err);
-    }
-    finally {
+    } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <form
-      className={`search-bar ${classes}`}
-      onSubmit={(e) => handleSubmit(e)}
-    >
+    <form className={`search-bar ${classes}`} onSubmit={(e) => handleSubmit(e)}>
       <div className="search-bar__panel">
         <input
           className="search-bar__field search-bar__panel-field"

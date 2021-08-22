@@ -3,7 +3,11 @@ import React, { FC } from 'react';
 import { UseAppSelector } from '../../hooks';
 import IArticleProps from '../../types/article-props.type';
 
-export const Article: FC<{article: IArticleProps}> = ({article}: {article: IArticleProps}) => {
+export const Article: FC<{ article: IArticleProps }> = ({
+  article,
+}: {
+  article: IArticleProps;
+}) => {
   const { apiQueryStr } = UseAppSelector((state) => state.news);
 
   return (
@@ -18,10 +22,7 @@ export const Article: FC<{article: IArticleProps}> = ({article}: {article: IArti
         {article.author ? (
           <div className="article__author">
             By
-            <span className="article__author-name">
-              {' '}
-              {article.author}
-            </span>
+            <span className="article__author-name"> {article.author}</span>
           </div>
         ) : (
           ''
@@ -30,7 +31,10 @@ export const Article: FC<{article: IArticleProps}> = ({article}: {article: IArti
           On {article.publishedAt.split('T')[0]}
         </span>
         <p className="article__content">{article.description}</p>
-        <a className="article__read-more" href={`/details/${article.id}${apiQueryStr}`}>
+        <a
+          className="article__read-more"
+          href={`/details/${article.id}${apiQueryStr}`}
+        >
           Read more
         </a>
       </div>

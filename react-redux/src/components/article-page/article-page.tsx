@@ -3,7 +3,10 @@ import React from 'react';
 import IArticleProps from '../../types/article-props.type';
 import { NEWS_API_URL } from '../../constants';
 
-export default class ArticlePage extends React.Component<unknown, { article?: IArticleProps }> {
+export default class ArticlePage extends React.Component<
+  unknown,
+  { article?: IArticleProps }
+> {
   constructor(props: unknown) {
     super(props);
 
@@ -12,13 +15,15 @@ export default class ArticlePage extends React.Component<unknown, { article?: IA
     this.getData();
   }
 
-  private static getDataFromUrlStr(): { apiOpts: string, articleId: string } | false {
+  private static getDataFromUrlStr():
+    | { apiOpts: string; articleId: string }
+    | false {
     const opts = {
       apiOpts: window.location.search,
       articleId: window.location.pathname
         .replace('/details/', '')
         .replace(/&dot_/g, '.')
-        .replace(/&/g, '/')
+        .replace(/&/g, '/'),
     };
 
     if (!opts.apiOpts || !opts.articleId) return false;
@@ -32,7 +37,7 @@ export default class ArticlePage extends React.Component<unknown, { article?: IA
     if (!article) return;
 
     this.setState({
-      article
+      article,
     });
   }
 
@@ -50,8 +55,7 @@ export default class ArticlePage extends React.Component<unknown, { article?: IA
       const data = await res.json();
 
       this.findArticle(data.articles, articleId);
-    }
-    catch (err: unknown) {
+    } catch (err: unknown) {
       console.error(err);
     }
   }
@@ -61,9 +65,11 @@ export default class ArticlePage extends React.Component<unknown, { article?: IA
 
     return (
       <main className="article-page__main page__main main">
-        { this.state.article ?
+        {this.state.article ? (
           <>
-            <h2 className="page__title article__title">{this.state.article.title}</h2>
+            <h2 className="page__title article__title">
+              {this.state.article.title}
+            </h2>
 
             <img
               className="article__image"
@@ -73,30 +79,31 @@ export default class ArticlePage extends React.Component<unknown, { article?: IA
 
             {this.state.article.author ? (
               <div className="article__rights">
-                By {' '}
+                By{' '}
                 <span className="article__author-name">
                   {this.state.article.author}
-                </span>
-
-                {' '} from {' '}
+                </span>{' '}
+                from{' '}
                 <span className="article__source-name">
                   {this.state.article.source.name}
                 </span>
               </div>
-            ) : null }
+            ) : null}
 
             <span className="article__published-at">
               On {this.state.article.publishedAt.split('T')[0]}
             </span>
 
-            <p className="article__content">{this.state.article.content.split(' [+')[0]}</p>
+            <p className="article__content">
+              {this.state.article.content.split(' [+')[0]}
+            </p>
             <a className="article__read-more" href={this.state.article.url}>
               Read more
             </a>
           </>
-        :
+        ) : (
           <p className="article__null">Article not found</p>
-        }
+        )}
       </main>
     );
   }

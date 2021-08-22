@@ -11,8 +11,8 @@ export const articlesSlice = createSlice({
     set: (state, action: PayloadAction<IReduxReducerInitialState>) => {
       state.articles = action.payload.articles;
       state.apiQueryStr = action.payload.apiQueryStr;
-    }
-  }
+    },
+  },
 });
 
 export const { set } = articlesSlice.actions;
