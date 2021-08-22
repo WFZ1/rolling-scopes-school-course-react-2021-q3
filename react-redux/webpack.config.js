@@ -57,7 +57,7 @@ module.exports = ({ develop }) => ({
     path: path.resolve(__dirname, 'dist'),
     assetModuleFilename: 'assets/[name].[hash][ext]',
     clean: { keep: /assets\// },
-    publicPath: '/'
+    publicPath: develop ? '/' : ''
   },
   plugins: [
     new HtmlWebpackPlugin({
