@@ -1,34 +1,18 @@
 import './articles-field.scss';
-import React from 'react';
-import Article from '../article/article';
-import IArticleProps from '../../types/article-props.type';
-import INewsApiQueryOpts from '../../types/news-api-query-opts.type';
+import React, { FC } from 'react';
+import { Article } from '../article/article';
+import { UseAppSelector } from '../../hooks';
 
-export default class ArticlesField extends React.Component<{
-  classes: string;
-  articles: IArticleProps[];
-  apiQueryOpts: INewsApiQueryOpts
-}> {
+export const ArticlesField: FC<{classes: string}> = ({ classes }: {classes: string}) => {
+  const { articles } = UseAppSelector((state) => state.news);
 
-  private getArticlePageUrl(url: string): string {
-    const opts = this.props.apiQueryOpts;
-    const id = url
-      .replace(/https?:\/\//, '')
-      .replace(/\//g, '&')
-      .replace(/\./g, '&dot_');
-
-    return `${id}?q=${opts.q}&sortBy=${opts.sortBy}&pageSize=${opts.pageSize}&page=${opts.page}`;
-  }
-
-  render(): JSX.Element {
-    return (
-      <div className={`articles-field ${this.props.classes}`}>
-        {this.props.articles.length
-          ? this.props.articles.map((article) => (
-              <Article key={article.author + article.title} data={article} url={this.getArticlePageUrl(article.url)} />
-            ))
-          : null}
-      </div>
-    );
-  }
+  return (
+    <div className={`articles-field ${classes}`}>
+      {articles.length
+        ? articles.map((article) => (
+            <Article key={article.id} article={article} />
+          ))
+        : null}
+    </div>
+  );
 }

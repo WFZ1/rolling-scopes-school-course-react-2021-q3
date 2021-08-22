@@ -1,7 +1,7 @@
 import './article-page.scss';
 import React from 'react';
 import IArticleProps from '../../types/article-props.type';
-import { NEWS_API_KEY } from '../../constants';
+import { NEWS_API_URL } from '../../constants';
 
 export default class ArticlePage extends React.Component<unknown, { article?: IArticleProps }> {
   constructor(props: unknown) {
@@ -44,7 +44,7 @@ export default class ArticlePage extends React.Component<unknown, { article?: IA
     const { apiOpts, articleId } = searchStrData;
 
     try {
-      const url = `https://newsapi.org/v2/everything${apiOpts}&apiKey=${NEWS_API_KEY}`;
+      const url = `${NEWS_API_URL}${apiOpts}`;
 
       const res = await fetch(url);
       const data = await res.json();

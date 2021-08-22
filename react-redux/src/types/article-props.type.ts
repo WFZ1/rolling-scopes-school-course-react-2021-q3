@@ -7,4 +7,5 @@ export default interface IArticleProps {
   title: string;
   url: string;
   urlToImage: string;
+  id: string;
 }

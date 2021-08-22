@@ -2,10 +2,10 @@ import './search-bar.scss';
 import React, { FC, useState } from 'react';
 import { set } from '../../redux/reducer';
 import { UseAppDispatch } from '../../hooks';
-import ISearchBarProps from '../../types/search-bar-props.type';
-import { NEWS_API_KEY, NEWS_API_SORT_TYPE } from '../../constants';
+import IArticleProps from '../../types/article-props.type';
+import { NEWS_API_KEY, NEWS_API_SORT_TYPE, NEWS_API_URL } from '../../constants';
 
-export const SearchBar: FC<ISearchBarProps> = ({ classes, saveData }: ISearchBarProps) => {
+export const SearchBar: FC<{classes: string}> = ({ classes }: {classes: string}) => {
   const [search, setSearch] = useState<string>('');
   const [sortBy, setSortBy] = useState<string>(NEWS_API_SORT_TYPE.relevant);
   const [pageSize, setPageSize] = useState<number>(5);
@@ -13,26 +13,31 @@ export const SearchBar: FC<ISearchBarProps> = ({ classes, saveData }: ISearchBar
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const dispatch = UseAppDispatch();
 
+  const getArticleIdFromUrl = (url: string): string => url
+    .replace(/https?:\/\//, '')
+    .replace(/\//g, '&')
+    .replace(/\./g, '&dot_');
+
+  const addIdsToArticles = (articles: IArticleProps[]): IArticleProps[] =>
+    articles.map((article) => {
+      article.id = getArticleIdFromUrl(article.url);
+      return article;
+    });
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-
     setIsLoading(true);
 
-    const apiQueryOpts = {
-      q: search,
-      sortBy,
-      pageSize,
-      page
-    };
-
     try {
-      const url = `https://newsapi.org/v2/everything?q=${search}&sortBy=${sortBy}&pageSize=${pageSize}&page=${page}&apiKey=${NEWS_API_KEY}`;
+      const apiQueryStr = `?q=${search}&sortBy=${sortBy}&pageSize=${pageSize}&page=${page}&apiKey=${NEWS_API_KEY}`;
+      const url = `${NEWS_API_URL}${apiQueryStr}`;
 
       const res = await fetch(url);
       const data = await res.json();
 
-      saveData(data.articles, apiQueryOpts);
-      dispatch(set({ articles: data.articles, apiQueryOpts }));
+      const articles = addIdsToArticles(data.articles);
+
+      dispatch(set({ articles, apiQueryStr }));
     }
     catch (err: unknown) {
       console.error(err);
@@ -40,7 +45,7 @@ export const SearchBar: FC<ISearchBarProps> = ({ classes, saveData }: ISearchBar
     finally {
       setIsLoading(false);
     }
-  }
+  };
 
   return (
     <form
@@ -124,4 +129,4 @@ export const SearchBar: FC<ISearchBarProps> = ({ classes, saveData }: ISearchBar
       </div>
     </form>
   );
-}
+};

@@ -6,14 +6,9 @@ export const NEWS_API_SORT_TYPE = {
   newest: 'publishedAt',
 };
 
-export const GET_ARTICLES = 'get/articles';
+export const NEWS_API_URL = 'https://newsapi.org/v2/everything';
 
 export const INITIAL_STATE = {
   articles: [],
-  apiQueryOpts: {
-    q: '',
-    sortBy: '',
-    pageSize: 0,
-    page: 0
-  }
+  apiQueryStr: ''
 };

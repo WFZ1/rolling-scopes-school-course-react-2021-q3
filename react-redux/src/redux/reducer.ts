@@ -10,7 +10,7 @@ export const articlesSlice = createSlice({
   reducers: {
     set: (state, action: PayloadAction<IReduxReducerInitialState>) => {
       state.articles = action.payload.articles;
-      state.apiQueryOpts = action.payload.apiQueryOpts;
+      state.apiQueryStr = action.payload.apiQueryStr;
     }
   }
 });
