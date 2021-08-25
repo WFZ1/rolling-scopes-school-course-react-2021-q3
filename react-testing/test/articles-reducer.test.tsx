@@ -40,6 +40,8 @@ const newsData2 = {
   apiQueryStr: `${NEWS_API_URL}?q=news`
 };
 
+// By example https://redux.js.org/usage/writing-tests#example
+
 describe('Articles Reducer', () => {
   test('Should return the initial state', () => {
     expect(articlesReducer(undefined, {} as Action)).toEqual(INITIAL_STATE);
