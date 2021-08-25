@@ -9,7 +9,7 @@ export const articlesSlice = createSlice({
   initialState,
   reducers: {
     set: (state, action: PayloadAction<IReduxReducerInitialState>) => {
-      state.articles = action.payload.articles;
+      state.data = action.payload.data;
       state.apiQueryStr = action.payload.apiQueryStr;
     },
   },

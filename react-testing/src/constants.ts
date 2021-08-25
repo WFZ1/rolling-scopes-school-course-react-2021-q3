@@ -9,6 +9,10 @@ export const NEWS_API_SORT_TYPE = {
 export const NEWS_API_URL = 'https://newsapi.org/v2/everything';
 
 export const INITIAL_STATE = {
-  articles: [],
+  data: {
+    articles: [],
+    status: undefined,
+    totalResults: undefined
+  },
   apiQueryStr: '',
 };

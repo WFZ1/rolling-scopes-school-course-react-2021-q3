@@ -1,6 +1,6 @@
-import IArticleProps from './article-props.type';
+import INewsProps from './news-props.type';
 
 export default interface IReduxReducerInitialState {
-  articles: IArticleProps[];
+  data: INewsProps;
   apiQueryStr: string;
-}
+};

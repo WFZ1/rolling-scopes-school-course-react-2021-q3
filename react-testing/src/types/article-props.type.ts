@@ -8,4 +8,4 @@ export default interface IArticleProps {
   url: string;
   urlToImage: string;
   id: string;
-}
+};

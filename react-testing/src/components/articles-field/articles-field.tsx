@@ -8,15 +8,16 @@ export const ArticlesField: FC<{ classes: string }> = ({
 }: {
   classes: string;
 }) => {
-  const { articles } = UseAppSelector((state) => state.news);
+  const { articles, status, totalResults } = UseAppSelector((state) => state.news.data);
 
   return (
     <div className={`articles-field ${classes}`}>
-      {articles.length
-        ? articles.map((article) => (
-            <Article key={article.id} article={article} />
-          ))
-        : null}
+      {articles.map((article) => (
+        <Article key={article.id} article={article} />
+      ))}
+
+      {(status === 'ok' && !totalResults) ?
+        <p className="articles-field__empty">Articles not found</p> : null}
     </div>
   );
 };

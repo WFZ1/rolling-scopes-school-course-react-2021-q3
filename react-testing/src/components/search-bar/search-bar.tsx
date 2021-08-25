@@ -1,5 +1,9 @@
 import './search-bar.scss';
 import React, { FC, useState } from 'react';
+
+// By example https://stackoverflow.com/a/48433898/13431496
+import fetch from 'node-fetch';
+
 import { set } from '../../redux/reducer';
 import { UseAppDispatch } from '../../hooks';
 import IArticleProps from '../../types/article-props.type';
@@ -16,7 +20,7 @@ export const SearchBar: FC<{ classes: string }> = ({
 }) => {
   const [search, setSearch] = useState<string>('');
   const [sortBy, setSortBy] = useState<string>(NEWS_API_SORT_TYPE.relevant);
-  const [pageSize, setPageSize] = useState<number>(5);
+  const [pageSize, setPageSize] = useState<number>(2);
   const [page, setPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const dispatch = UseAppDispatch();
@@ -44,11 +48,13 @@ export const SearchBar: FC<{ classes: string }> = ({
       const url = `${NEWS_API_URL}${apiQueryStr}`;
 
       const res = await fetch(url);
-      const data = await res.json();
 
-      const articles = addIdsToArticles(data.articles);
+      if (res.ok) {
+        const data = await res.json();
+        data.articles = addIdsToArticles(data.articles);
 
-      dispatch(set({ articles, apiQueryStr }));
+        dispatch(set({ data, apiQueryStr }));
+      }
     } catch (err: unknown) {
       console.error(err);
     } finally {
