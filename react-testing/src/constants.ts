@@ -12,7 +12,7 @@ export const INITIAL_STATE = {
   data: {
     articles: [],
     status: undefined,
-    totalResults: undefined
+    totalResults: undefined,
   },
   apiQueryStr: '',
 };

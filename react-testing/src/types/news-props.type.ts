@@ -4,4 +4,4 @@ export default interface INewsProps {
   articles: IArticleProps[];
   status: string | undefined;
   totalResults: number | undefined;
-};
+}

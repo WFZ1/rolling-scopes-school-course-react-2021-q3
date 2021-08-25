@@ -10,7 +10,7 @@
     "start": "webpack serve --open --env develop",
     "build": "webpack",
     "lint": "eslint src test",
-    "pretty": "prettier --write src"
+    "pretty": "prettier --write src test"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",

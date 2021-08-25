@@ -6,10 +6,10 @@ import DetailsPage from '../src/components/details-page/details-page';
 
 describe('Details Page', () => {
   test('Should render page', () => {
-    const {getByRole} = render(
+    const { getByRole } = render(
       <Provider store={store}>
         <DetailsPage />
-      </Provider>
+      </Provider>,
     );
 
     expect(getByRole('heading', { name: 'Details Page' })).toBeTruthy();

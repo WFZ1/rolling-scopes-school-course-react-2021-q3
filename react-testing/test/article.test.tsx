@@ -13,7 +13,7 @@ const article = {
   title: 'Article1',
   url: 'https://news.com',
   urlToImage: 'https://news.com/images/1',
-  id: 'news&dot_com'
+  id: 'news&dot_com',
 };
 
 const article2 = {
@@ -25,25 +25,26 @@ const article2 = {
   title: 'Article2',
   url: 'https://news.com',
   urlToImage: 'https://news.com/images/2',
-  id: 'news&dot_com'
+  id: 'news&dot_com',
 };
 
-const customRender = (ui: JSX.Element) => render(
-  <Provider store={store}>{ui}</Provider>
-);
+const customRender = (ui: JSX.Element) =>
+  render(<Provider store={store}>{ui}</Provider>);
 
 // By example https://testing-library.com/docs/example-update-props/
 
 describe('Article', () => {
   test('Calling render with the same component on the same container does not remount', () => {
-    const { rerender, getByRole, getAllByRole } = customRender(<Article article={article} />);
+    const { rerender, getByRole, getAllByRole } = customRender(
+      <Article article={article} />,
+    );
 
     expect(getByRole('heading', { name: article.title })).toBeTruthy();
 
     rerender(
       <Provider store={store}>
         <Article article={article2} />
-      </Provider>
+      </Provider>,
     );
 
     expect(getAllByRole('heading')).toHaveLength(1);

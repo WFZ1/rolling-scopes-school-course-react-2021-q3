@@ -17,7 +17,7 @@ describe('Routing', () => {
         <Router history={history}>
           <App />
         </Router>
-      </Provider>
+      </Provider>,
     );
 
     expect(document.body.classList.contains('home-page')).toBe(true);

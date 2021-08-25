@@ -9,7 +9,7 @@ describe('Article Page', () => {
     render(
       <Provider store={store}>
         <ArticlePage />
-      </Provider>
+      </Provider>,
     );
 
     expect(document.body.classList.contains('article-page')).toBeTruthy();

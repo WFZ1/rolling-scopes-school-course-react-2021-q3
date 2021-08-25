@@ -4,40 +4,44 @@ import { INITIAL_STATE, NEWS_API_URL } from '../src/constants';
 
 const newsData = {
   data: {
-    articles: [{
-      author: 'Man',
-      content: 'content ...',
-      description: '...',
-      publishedAt: '08-25-2021',
-      source: { id: 'localhost', name: 'localhost' },
-      title: 'Article',
-      url: 'https://news.com',
-      urlToImage: 'https://news.com/images/1',
-      id: 'news&dot_com'
-    }],
+    articles: [
+      {
+        author: 'Man',
+        content: 'content ...',
+        description: '...',
+        publishedAt: '08-25-2021',
+        source: { id: 'localhost', name: 'localhost' },
+        title: 'Article',
+        url: 'https://news.com',
+        urlToImage: 'https://news.com/images/1',
+        id: 'news&dot_com',
+      },
+    ],
     status: 'ok',
-    totalResults: 123
+    totalResults: 123,
   },
-  apiQueryStr: `${NEWS_API_URL}?q=news`
+  apiQueryStr: `${NEWS_API_URL}?q=news`,
 };
 
 const newsData2 = {
   data: {
-    articles: [{
-      author: 'Woman',
-      content: '...',
-      description: 'description ...',
-      publishedAt: '08-25-2021',
-      source: { id: 'localhost', name: 'localhost' },
-      title: 'Article',
-      url: 'https://news.com',
-      urlToImage: 'https://news.com/images/2',
-      id: 'news&dot_com'
-    }],
+    articles: [
+      {
+        author: 'Woman',
+        content: '...',
+        description: 'description ...',
+        publishedAt: '08-25-2021',
+        source: { id: 'localhost', name: 'localhost' },
+        title: 'Article',
+        url: 'https://news.com',
+        urlToImage: 'https://news.com/images/2',
+        id: 'news&dot_com',
+      },
+    ],
     status: 'ok',
-    totalResults: 321
+    totalResults: 321,
   },
-  apiQueryStr: `${NEWS_API_URL}?q=news`
+  apiQueryStr: `${NEWS_API_URL}?q=news`,
 };
 
 // By example https://redux.js.org/usage/writing-tests#example
