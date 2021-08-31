@@ -1,6 +1,6 @@
 import express from 'express';
 import React from 'react';
-import {renderToString} from 'react-dom/server';
+import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
@@ -17,7 +17,7 @@ app.get('*', async (req, res) => {
     reducer: {
       news: () => INITIAL_STATE,
     },
-    devTools: process.env.NODE_ENV !== 'production'
+    devTools: process.env.NODE_ENV !== 'production',
   });
 
   const content = renderToString(
@@ -25,7 +25,7 @@ app.get('*', async (req, res) => {
       <StaticRouter location={req.url} context={{}}>
         <App />
       </StaticRouter>
-    </Provider>
+    </Provider>,
   );
 
   res.send(
@@ -34,7 +34,7 @@ app.get('*', async (req, res) => {
       jsPath: 'main.js',
       content,
       data: JSON.stringify({ news: INITIAL_STATE }),
-    })
+    }),
   );
 });
 

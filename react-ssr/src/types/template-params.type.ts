@@ -3,4 +3,4 @@ export default interface ITemplateParams {
   jsPath: string;
   content: string;
   data?: string;
-};
+}

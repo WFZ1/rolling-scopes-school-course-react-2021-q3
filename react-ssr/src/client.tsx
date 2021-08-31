@@ -12,7 +12,7 @@ const store = configureStore({
     news: articlesReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
-  preloadedState: restoreDataOnClient()
+  preloadedState: restoreDataOnClient(),
 });
 
 hydrate(

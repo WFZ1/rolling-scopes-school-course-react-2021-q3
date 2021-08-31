@@ -1,6 +1,11 @@
 import ITemplateParams from './types/template-params.type';
 
-export default function renderTemplate({cssPath, jsPath, content = '', data = ''}: ITemplateParams): string {
+export default function renderTemplate({
+  cssPath,
+  jsPath,
+  content = '',
+  data = '',
+}: ITemplateParams): string {
   return `<!DOCTYPE html>
     <html lang="en">
       <head>
@@ -14,7 +19,10 @@ export default function renderTemplate({cssPath, jsPath, content = '', data = ''
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root">${content}</div>
 
-        <script type="application/json" id="data">${data.replace(/</g, '&lt;')}</script>
+        <script type="application/json" id="data">${data.replace(
+          /</g,
+          '&lt;',
+        )}</script>
         <script src="/client/${jsPath}"></script>
       </body>
     </html>`;

@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  Switch,
-  Route,
-  NavLink,
-} from 'react-router-dom';
+import { Switch, Route, NavLink } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import ROUTES from './routes';
 import './style.scss';
