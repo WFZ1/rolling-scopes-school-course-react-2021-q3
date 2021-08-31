@@ -1,29 +1,17 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   NavLink,
 } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import HomePage from './components/home-page/home-page';
-import AboutPage from './components/about-page/about-page';
-import NotFoundPage from './components/not-found-page/not-found-page';
-import DetailsPage from './components/details-page/details-page';
-import ArticlePage from './components/article-page/article-page';
-
-const ROUTES = [
-  { path: '/', name: 'Home', Component: HomePage },
-  { path: '/about', name: 'About', Component: AboutPage },
-  { path: '/details', Component: DetailsPage },
-  { path: '/details/:id', Component: ArticlePage },
-  { path: '*', Component: NotFoundPage },
-];
+import ROUTES from './routes';
+import './style.scss';
 
 export default class App extends React.Component {
   render(): JSX.Element {
     return (
-      <Router>
+      <>
         <header className="header">
           <nav className="header__nav">
             <ul className="header__nav-list">
@@ -58,7 +46,7 @@ export default class App extends React.Component {
             </TransitionGroup>
           )}
         />
-      </Router>
+      </>
     );
   }
 }

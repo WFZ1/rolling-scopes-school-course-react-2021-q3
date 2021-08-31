@@ -3,7 +3,9 @@ import React from 'react';
 
 export default class AboutPage extends React.Component {
   render(): JSX.Element {
-    document.body.className = 'page about-page';
+    if (IS_CLIENT) {
+      document.body.className = 'page about-page';
+    }
 
     return (
       <main className="about-page__main page__main main">

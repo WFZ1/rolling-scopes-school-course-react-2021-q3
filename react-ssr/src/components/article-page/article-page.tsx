@@ -61,7 +61,9 @@ export default class ArticlePage extends React.Component<
   }
 
   render(): JSX.Element {
-    document.body.className = 'page article-page';
+    if (IS_CLIENT) {
+      document.body.className = 'page article-page';
+    }
 
     return (
       <main className="article-page__main page__main main">

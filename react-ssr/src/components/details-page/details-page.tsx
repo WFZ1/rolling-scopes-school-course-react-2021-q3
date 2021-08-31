@@ -3,7 +3,9 @@ import React from 'react';
 
 export default class DetailsPage extends React.Component {
   render(): JSX.Element {
-    document.body.className = 'page details-page';
+    if (IS_CLIENT) {
+      document.body.className = 'page details-page';
+    }
 
     return (
       <>

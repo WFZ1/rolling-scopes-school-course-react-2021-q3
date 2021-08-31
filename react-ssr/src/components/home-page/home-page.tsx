@@ -4,7 +4,9 @@ import SearchDashboard from '../search-dashboard/search-dashboard';
 
 export default class HomePage extends React.Component {
   render(): JSX.Element {
-    document.body.className = 'page home-page';
+    if (IS_CLIENT) {
+      document.body.className = 'page home-page';
+    }
 
     return (
       <main className="home-page__main page__main main">
